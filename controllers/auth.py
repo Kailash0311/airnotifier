@@ -40,12 +40,14 @@ class AuthHandler(WebBaseHandler):
             self.render("login.html")
 
     def post(self, action):
-        next = self.get_argument("next", "/")
+        next = self.get_argument("next", "/air")
         if action == "logout":
             self.clear_cookie("user")
         else:
             login = self.get_argument("login", None)
+            print(login)
             password = self.get_argument("password", None)
+            print(password)
             passwordhash = get_password(password, options.passwordsalt)
             user = self.masterdb.managers.find_one(
                 {

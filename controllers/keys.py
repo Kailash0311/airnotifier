@@ -33,7 +33,7 @@ from util import *
 import logging
 
 
-@route(r"/applications/([^/]+)/keys")
+@route(r"/air/applications/([^/]+)/keys")
 class AppAccessKeysHandler(WebBaseHandler):
     @tornado.web.authenticated
     def get(self, appname):
@@ -56,7 +56,7 @@ class AppAccessKeysHandler(WebBaseHandler):
             return
         if key_to_be_deleted:
             self.db.keys.remove({"key": key_to_be_deleted})
-            self.redirect("/applications/%s/keys" % appname)
+            self.redirect("/air/applications/%s/keys" % appname)
         self.render(
             "app_keys.html",
             app=app,
@@ -88,8 +88,8 @@ class AppAccessKeysHandler(WebBaseHandler):
             # crc = binascii.crc32(str(uuid.uuid4())) & 0xffffffff
             # key['key'] = '%08x' % crc
             keyObjectId = self.db.keys.insert(key)
-            self.redirect("/applications/%s/keys" % appname)
+            self.redirect("/air/applications/%s/keys" % appname)
         else:
             key["key"] = self.get_argument("accesskey").strip()
             self.db.keys.update({"key": key["key"]}, key)
-            self.redirect("/applications/%s/keys" % appname)
+            self.redirect("/air/applications/%s/keys" % appname)

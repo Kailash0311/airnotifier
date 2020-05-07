@@ -52,12 +52,12 @@ block body %} {% if newkey %}
         <td>
           <a
             class="btn btn-primary"
-            href="/applications/{{app['shortname']}}/keys?edit={{key['key']}}"
+            href="/air/applications/{{app['shortname']}}/keys?edit={{key['key']}}"
             ><i class="icon-pencil icon-white"></i> {{ _('Edit') }}</a
           >
           <a
             class="btn btn-danger"
-            href="/applications/{{app['shortname']}}/keys?delete={{key['key']}}"
+            href="/air/applications/{{app['shortname']}}/keys?delete={{key['key']}}"
             ><i class="icon-trash icon-white"></i> {{ _('Delete') }}</a
           >
         </td>

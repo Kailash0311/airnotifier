@@ -126,16 +126,16 @@ class WebBaseHandler(tornado.web.RequestHandler):
         return super(WebBaseHandler, self).render_string(template_name, **kwargs)
 
 
-@route(r"/")
+@route(r"/air") 
 class MainHandler(WebBaseHandler):
     """ Redirect to default view """
 
     @tornado.web.authenticated
     def get(self):
-        self.redirect(r"/applications")
+        self.redirect(r"/air/applications")
 
 
-@route(r"/applications/([^/]+)/delete")
+@route(r"/air/applications/([^/]+)/delete")
 class AppDeletionHandler(WebBaseHandler):
     @tornado.web.authenticated
     def get(self, appname):
@@ -153,10 +153,10 @@ class AppDeletionHandler(WebBaseHandler):
             raise tornado.web.HTTPError(500)
         self.masterdb.applications.remove({"shortname": appname})
         self.mongodbconnection.drop_database(appname)
-        self.redirect(r"/applications")
+        self.redirect(r"/air/applications")
 
 
-@route(r"/applications/([^/]+)/logs")
+@route(r"/air/applications/([^/]+)/logs")
 class AppLogViewHandler(WebBaseHandler):
     @tornado.web.authenticated
     def get(self, appname):
@@ -183,10 +183,10 @@ class AppLogViewHandler(WebBaseHandler):
         now = int(time.time())
         thirtydaysago = now - 60 * 60 * 24 * 30
         self.db.logs.remove({"created": {"$lt": thirtydaysago}})
-        self.redirect(r"/applications/%s/logs" % appname)
+        self.redirect(r"/air/applications/%s/logs" % appname)
 
 
-@route(r"/applications/([^/]+)/objects")
+@route(r"/air/applications/([^/]+)/objects")
 class AppObjectsHandler(WebBaseHandler):
     @tornado.web.authenticated
     def get(self, appname):
@@ -198,7 +198,7 @@ class AppObjectsHandler(WebBaseHandler):
         self.render("app_objects.html", app=app, objects=objects)
 
 
-@route(r"/applications/([^/]+)")
+@route(r"/air/applications/([^/]+)")
 class AppHandler(WebBaseHandler):  # @DuplicatedSignature
     """
     Just redirection
@@ -206,10 +206,10 @@ class AppHandler(WebBaseHandler):  # @DuplicatedSignature
 
     @tornado.web.authenticated
     def get(self, appname):
-        self.redirect(r"/applications/%s/settings" % appname)
+        self.redirect(r"/air/applications/%s/settings" % appname)
 
 
-@route(r"/applications")
+@route(r"/air/applications")
 class AppsListHandler(WebBaseHandler):
     @tornado.web.authenticated
     def get(self):
@@ -221,7 +221,7 @@ class AppsListHandler(WebBaseHandler):
         self.render("apps.html", apps=apps, outdated=outdated)
 
 
-@route(r"/stats/")
+@route(r"/air/stats/")
 class StatsHandler(WebBaseHandler):
     @tornado.web.authenticated
     def get(self):
@@ -257,7 +257,7 @@ class InfoHandler(WebBaseHandler):
         )
 
 
-@route(r"/admin/([^/]+)")
+@route(r"/air/admin/([^/]+)")
 class AdminHandler(WebBaseHandler):
     @tornado.web.authenticated
     def get(self, action):
@@ -265,7 +265,7 @@ class AdminHandler(WebBaseHandler):
             user_id = self.get_argument("delete", None)
             if user_id:
                 self.masterdb.managers.remove({"_id": ObjectId(user_id)})
-                self.redirect("/admin/managers")
+                self.redirect("/air/admin/managers")
                 return
         currentuser_orgid = self.currentuser["orgid"]
         if currentuser_orgid == 0:

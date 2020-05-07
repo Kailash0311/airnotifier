@@ -60,12 +60,12 @@ import traceback
 from controllers.base import *
 
 
-@route(r"/applications/([^/]+)/settings[\/]?")
+@route(r"/air/applications/([^/]+)/settings[\/]?")
 class AppHandler(WebBaseHandler):
     @tornado.web.authenticated
     def get(self, appname):
         if appname == "new":
-            self.redirect(r"/create/app")
+            self.redirect(r"/air/create/app")
         else:
             app = self.dao.find_app_by_name(appname)
             if not app:
@@ -132,7 +132,7 @@ class AppHandler(WebBaseHandler):
                     self.wnsconnections[app["shortname"]].append(wns)
 
             self.dao.update_app_by_name(self.appname, app)
-            self.redirect(r"/applications/%s/settings" % self.appname)
+            self.redirect(r"/air/applications/%s/settings" % self.appname)
         except Exception as ex:
             logging.error(traceback.format_exc())
             self.render("app_settings.html", app=app, error=str(ex))

@@ -1,4 +1,5 @@
 import logging
+import regex as re
 
 #  will choose the FIRST match it comes too
 #  or define routes in your controller using @route(r'')
@@ -58,7 +59,6 @@ class RouteLoader(object):
     def load(package_name, include_routes_file=True):
         loader = RouteLoader()
         return loader.init_routes(package_name, include_routes_file)
-
     def init_routes(self, package_name, include_routes_file=True):
         import pkgutil, sys
 
@@ -79,5 +79,11 @@ class RouteLoader(object):
         # add the routes from our route file
         if include_routes_file:
             url_routes.extend(route_list)
-
+        for i in range(len(url_routes)):
+            # route = url_routes[1][0]
+            list_tuple = list(url_routes[i])
+            if(not(re.match(r'^/air', list_tuple[0]))):
+                list_tuple[0] = re.sub(r'^/', '/air/', list_tuple[0])
+                print(list_tuple[0])
+                url_routes[i] = tuple(list_tuple)
         return url_routes

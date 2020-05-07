@@ -42,7 +42,7 @@ from constants import (
 )
 
 
-@route(r"/create/app")
+@route(r"/air/create/app")
 class AppCreateNewHandler(WebBaseHandler):
     @tornado.web.authenticated
     def get(self):
@@ -86,4 +86,4 @@ class AppCreateNewHandler(WebBaseHandler):
             indexes = [("created", DESCENDING)]
             self.db["tokens"].create_index(indexes)
             self.db["logs"].create_index(indexes)
-        self.redirect(r"/applications/%s/settings" % self.appname)
+        self.redirect(r"/air/applications/%s/settings" % self.appname)

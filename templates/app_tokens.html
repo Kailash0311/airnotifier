@@ -21,7 +21,7 @@ block body %}
         <td>
           <a
             class="btn btn-danger"
-            href="/applications/{{app['shortname']}}/tokens?delete={{token['_id']}}"
+            href="/air/applications/{{app['shortname']}}/tokens?delete={{token['_id']}}"
             ><i class="icon-trash icon-white"></i> {{ _('Delete') }}</a
           >
         </td>
@@ -33,13 +33,13 @@ block body %}
     {% if not (page == 0) %}
     <a
       class="btn btn-primary"
-      href="/applications/{{app['shortname']}}/tokens?page={{page - 1}}"
+      href="/air/applications/{{app['shortname']}}/tokens?page={{page - 1}}"
       >{{ _('Previous') }}</a
     >
     {% end %}
     <a
       class="btn btn-primary"
-      href="/applications/{{app['shortname']}}/tokens?page={{page + 1}}"
+      href="/air/applications/{{app['shortname']}}/tokens?page={{page + 1}}"
       >{{ _('Next') }}</a
     >
   </div>

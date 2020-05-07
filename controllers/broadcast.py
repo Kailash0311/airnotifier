@@ -31,7 +31,7 @@ import tornado.web
 from controllers.base import *
 
 
-@route(r"/applications/([^/]+)/broadcast")
+@route(r"/air/applications/([^/]+)/broadcast")
 class AppBroadcastHandler(WebBaseHandler):
     @tornado.web.authenticated
     def get(self, appname):
@@ -56,7 +56,7 @@ class AppBroadcastHandler(WebBaseHandler):
         self.render("app_broadcast.html", app=app, sent=True)
 
 
-@route(r"/applications/([^/]+)/broadcast/status")
+@route(r"/air/applications/([^/]+)/broadcast/status")
 class AppBroadcastStatusHandler(WebBaseHandler):
     @tornado.web.authenticated
     def get(self, appname):

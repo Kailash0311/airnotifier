@@ -36,7 +36,7 @@
         <td><strong>{{ m['email'] }}</strong></td>
         <td>
           {% if currentuser['email'] != m['email'] %}
-          <a class="btn btn-danger" href="/admin/managers?delete={{m['_id']}}"
+          <a class="btn btn-danger" href="/air/admin/managers?delete={{m['_id']}}"
             ><i class="icon-trash icon-white"></i> {{ _('Delete') }}</a
           >
           {% else %}

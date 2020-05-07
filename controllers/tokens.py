@@ -31,7 +31,7 @@ import tornado.web
 from controllers.base import *
 
 
-@route(r"/applications/([^/]+)/tokens")
+@route(r"/air/applications/([^/]+)/tokens")
 class AppTokensHandler(WebBaseHandler):
     @tornado.web.authenticated
     def get(self, appname):
@@ -45,7 +45,7 @@ class AppTokensHandler(WebBaseHandler):
         token_id = self.get_argument("delete", None)
         if token_id:
             self.db.tokens.remove({"_id": ObjectId(token_id)})
-            self.redirect("/applications/%s/tokens" % appname)
+            self.redirect("/air/applications/%s/tokens" % appname)
             return
         if page:
             tokens = (

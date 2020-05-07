@@ -11,7 +11,7 @@
   <li class="nav-item">
     <a
       class="nav-link {% if active == 'managers' %}active{% end %}"
-      href="/admin/managers"
+      href="/air/admin/managers"
     >
       <svg
         id="i-user"
@@ -36,7 +36,7 @@
   <li class="nav-item">
     <a
       class="nav-link {% if active == 'createapp' %}active{% end %}"
-      href="/create/app"
+      href="/air/create/app"
     >
       <svg
         id="i-plus"
@@ -71,7 +71,7 @@
   <li class="nav-item text-break">
     <a
       class="nav-link {% if r['shortname'] == app.get('shortname', '') %}active{%end%}"
-      href="/applications/{{r['shortname']}}/settings"
+      href="/air/applications/{{r['shortname']}}/settings"
     >
       <svg
         id="i-mobile"

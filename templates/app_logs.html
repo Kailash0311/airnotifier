@@ -54,13 +54,13 @@ block body %}
     {% if not (page == 0) %}
     <a
       class="btn"
-      href="/applications/{{app['shortname']}}/logs?page={{page - 1}}"
+      href="/air/applications/{{app['shortname']}}/logs?page={{page - 1}}"
       >{{ _('Previous') }}</a
     >
     {% end %}
     <a
       class="btn"
-      href="/applications/{{app['shortname']}}/logs?page={{page + 1}}"
+      href="/air/applications/{{app['shortname']}}/logs?page={{page + 1}}"
       >{{ _('Next') }}</a
     >
   </div>
