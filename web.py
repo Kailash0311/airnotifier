@@ -40,7 +40,7 @@ class WebApplication(tornado.web.Application):
             template_path=os.path.join(os.path.dirname(__file__), "templates"),
             static_path=os.path.join(os.path.dirname(__file__), "static"),
             cookie_secret=options.cookiesecret,
-            login_url=r"/auth/login",
+            login_url=r"/air/auth/login",
             autoescape=None,
             default_handler_class=NotFoundHandler,
         )

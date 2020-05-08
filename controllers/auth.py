@@ -29,7 +29,7 @@ import hashlib, os
 from controllers.base import *
 
 
-@route(r"/auth/([^/]+)")
+@route(r"/air/auth/([^/]+)")
 class AuthHandler(WebBaseHandler):
     def get(self, action):
         next = self.get_argument("next", "/")
