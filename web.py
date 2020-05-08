@@ -38,7 +38,7 @@ class WebApplication(tornado.web.Application):
             version="{}-{}".format(RELEASE, VERSION),
             ui_modules={"AppSideBar": AppSideBar, "NavBar": NavBar, "TabBar": TabBar},
             template_path=os.path.join(os.path.dirname(__file__), "templates"),
-            static_path=os.path.join(os.path.dirname(__file__), "static"),
+            static_path=os.path.join(os.path.dirname(__file__), "air/static"),
             cookie_secret=options.cookiesecret,
             login_url=r"/air/auth/login",
             autoescape=None,
